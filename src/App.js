@@ -38,15 +38,11 @@ const Status = {
 };
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      status: Status.green,
-      hasErrors: false
-    };
-  }
+  state = {
+    hasErrors: false
+  };
 
-  setStatus = async status => {
+  saveStatus = async status => {
     this.setState({ hasErrors: false });
     try {
       await API.post(apiUrl, statusEndpoint, {
@@ -55,32 +51,31 @@ class App extends React.Component {
           status
         }
       });
-      await this.getCurrentStatus();
+      await this.fetchCurrentStatus();
     } catch (error) {
       this.setState({ hasErrors: true });
     }
   };
 
-  getCurrentStatus = async () => {
+  fetchCurrentStatus = async () => {
     this.setState({ hasErrors: false });
     try {
       const response = await API.get(apiUrl, statusEndpoint + "/object/1");
-      return response.status;
+      this.setState({ status: response.status });
     } catch (error) {
       this.setState({ hasErrors: true });
     }
   };
 
   async componentDidMount() {
-    const currentStatus = await this.getCurrentStatus();
-    this.setState({ status: currentStatus });
+    await this.fetchCurrentStatus();
   }
 
   handleChange = value => this.setState({ status: value });
 
   handleSubmit = async () => {
     const { status } = this.state;
-    await this.setStatus(status);
+    await this.saveStatus(status);
   };
 
   render() {
