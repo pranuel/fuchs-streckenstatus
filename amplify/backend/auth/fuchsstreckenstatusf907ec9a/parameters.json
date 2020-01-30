@@ -1,0 +1,52 @@
+{
+    "identityPoolName": "fuchsstreckenstatusf907ec9a_identitypool_f907ec9a",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "fuchssf907ec9a",
+    "userPoolName": "fuchsstreckenstatusf907ec9a_userpool_f907ec9a",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "userpoolClientLambdaRole": "fuchssf907ec9a_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "resourceName": "fuchsstreckenstatusf907ec9a",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "default",
+    "userPoolGroupList": [
+        "Admins"
+    ],
+    "dependsOn": []
+}

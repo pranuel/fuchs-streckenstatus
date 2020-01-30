@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-fuchs-streckenstatus-dev-181130-authRole",
+            "UnauthRoleArn": "arn:aws:iam::561253620376:role/amplify-fuchs-streckenstatus-dev-181130-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::561253620376:role/amplify-fuchs-streckenstatus-dev-181130-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-fuchs-streckenstatus-dev-181130-deployment",
+            "UnauthRoleName": "amplify-fuchs-streckenstatus-dev-181130-unauthRole",
+            "StackName": "amplify-fuchs-streckenstatus-dev-181130",
+            "StackId": "arn:aws:cloudformation:eu-central-1:561253620376:stack/amplify-fuchs-streckenstatus-dev-181130/8fdb9290-4383-11ea-90e8-0a0ddac78b4a",
+            "AmplifyAppId": "d1za7exfn4iv9i"
+        },
+        "categories": {
+            "auth": {
+                "fuchsstreckenstatusf907ec9a": {}
+            }
+        }
+    }
+}
