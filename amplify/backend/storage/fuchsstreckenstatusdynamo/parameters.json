@@ -1,0 +1,5 @@
+{
+    "tableName": "fuchsstreckenstatus",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S"
+}

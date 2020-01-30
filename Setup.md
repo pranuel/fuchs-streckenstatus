@@ -25,15 +25,18 @@
     * click on `+` in front of user to add
 * `amplify add api`
     * select REST
-    * path: /items
     * friendly name: fuchsstreckenstatusapi
-    * AWS Lambda function name: fuchsstreckenstatus
+    * path: /status
+    * AWS Lambda function name: fuchsstreckenstatusfunction
     * select `CRUD function for Amazon DynamoDB table`
     * select `Create a new DynamoDB table`
     * fiendly name: fuchsstreckenstatusdynamo
-    * table name: fuchsstreckenstatusdynamo
+    * table name: fuchsstreckenstatus
+    * add column: id
+    * data type: string
     * add column: status
     * data type: string
+    * select id as key index
     * answer the rest with `no`
     * Do you want to edit the local lambda function now?: `Yes`
     * just hit enter in the console

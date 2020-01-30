@@ -7,6 +7,7 @@ import { withAuthenticator } from "aws-amplify-react";
 Amplify.configure(awsconfig);
 
 const apiUrl = "fuchsstreckenstatusapi";
+const statusEndpoint = "/status";
 const Status = {
   green: "Green",
   yellow: "Yellow",
@@ -21,8 +22,9 @@ class App extends React.Component {
 
   post = async () => {
     console.log("calling api");
-    const response = await API.post(apiUrl, "/items", {
+    const response = await API.post(apiUrl, statusEndpoint, {
       body: {
+        id: "1",
         status: Status.green
       }
     });
@@ -31,13 +33,13 @@ class App extends React.Component {
 
   get = async () => {
     console.log("calling api");
-    const response = await API.get(apiUrl, "/items/object/1");
+    const response = await API.get(apiUrl, statusEndpoint + "/object/1");
     alert(JSON.stringify(response, null, 2));
   };
 
   list = async () => {
     console.log("calling api");
-    const response = await API.get(apiUrl, "/items");
+    const response = await API.get(apiUrl, statusEndpoint + "/1");
     this.setState({ items: response });
     console.log(this.state.items);
   };

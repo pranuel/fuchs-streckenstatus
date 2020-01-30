@@ -1,0 +1,64 @@
+{
+    "paths": [
+        {
+            "name": "/status",
+            "lambdaFunction": "fuchsstreckenstatusfunction",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/GET"
+                ],
+                "unauth": [
+                    "/GET"
+                ],
+                "userPoolGroups": {
+                    "Admins": [
+                        "/POST",
+                        "/GET",
+                        "/PUT",
+                        "/PATCH",
+                        "/DELETE"
+                    ]
+                }
+            }
+        }
+    ],
+    "resourceName": "fuchsstreckenstatusapi",
+    "apiName": "fuchsstreckenstatusapi",
+    "authResourceName": "fuchsstreckenstatus03aa004d",
+    "functionArns": [
+        {
+            "lambdaFunction": "fuchsstreckenstatusfunction"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-fuchs-streckenstatus-dev-181130-authRole",
+        "unAuthRoleName": "amplify-fuchs-streckenstatus-dev-181130-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "fuchsstreckenstatusfunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "auth",
+            "resourceName": "fuchsstreckenstatus03aa004d",
+            "attributes": [
+                "UserPoolId"
+            ]
+        },
+        {
+            "category": "auth",
+            "resourceName": "userPoolGroups",
+            "attributes": [
+                "AdminsGroupRole"
+            ]
+        }
+    ]
+}
