@@ -111,6 +111,7 @@ class App extends React.Component {
                 }
               ]}
               value={status}
+              margin="medium"
               onChange={event => this.handleChange(event.target.value)}
             />
             <Button

@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/status",
+            "lambdaFunction": "fuchsstreckenstatusreadonlyfunction",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "fuchsstreckenstatusreadonlyapi",
+    "apiName": "fuchsstreckenstatusreadonlyapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "fuchsstreckenstatusreadonlyfunction"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-fuchs-streckenstatus-dev-181130-authRole",
+        "unAuthRoleName": "amplify-fuchs-streckenstatus-dev-181130-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "fuchsstreckenstatusreadonlyfunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
