@@ -1,6 +1,6 @@
 {
     "identityPoolName": "fuchsstreckenstatusf907ec9a_identitypool_f907ec9a",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "fuchssf907ec9a",
     "userPoolName": "fuchsstreckenstatusf907ec9a_userpool_f907ec9a",
     "autoVerifiedAttributes": [
