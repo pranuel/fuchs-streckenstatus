@@ -1,8 +1,31 @@
 import React from "react";
-import "./App.css";
 import Amplify, { API } from "aws-amplify";
 import awsconfig from "./aws-exports";
 import { withAuthenticator } from "aws-amplify-react";
+import {
+  Grommet,
+  Main,
+  Heading,
+  RadioButtonGroup,
+  Form,
+  FormField,
+  Button,
+  Paragraph
+} from "grommet";
+import { Checkmark } from "grommet-icons";
+
+const theme = {
+  global: {
+    colors: {
+      brand: "#035951"
+    },
+    font: {
+      family: "Roboto",
+      size: "18px",
+      height: "20px"
+    }
+  }
+};
 
 Amplify.configure(awsconfig);
 
@@ -17,47 +40,93 @@ const Status = {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [] };
+    this.state = {
+      status: Status.green,
+      hasErrors: false
+    };
   }
 
-  post = async () => {
-    console.log("calling api");
-    const response = await API.post(apiUrl, statusEndpoint, {
-      body: {
-        id: "1",
-        status: Status.green
-      }
-    });
-    alert(JSON.stringify(response, null, 2));
+  setStatus = async status => {
+    this.setState({ hasErrors: false });
+    try {
+      await API.post(apiUrl, statusEndpoint, {
+        body: {
+          id: "1",
+          status
+        }
+      });
+      await this.getCurrentStatus();
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
   };
 
-  get = async () => {
-    console.log("calling api");
-    const response = await API.get(apiUrl, statusEndpoint + "/object/1");
-    alert(JSON.stringify(response, null, 2));
+  getCurrentStatus = async () => {
+    this.setState({ hasErrors: false });
+    try {
+      const response = await API.get(apiUrl, statusEndpoint + "/object/1");
+      return response.status;
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
   };
 
-  list = async () => {
-    console.log("calling api");
-    const response = await API.get(apiUrl, statusEndpoint + "/1");
-    this.setState({ items: response });
-    console.log(this.state.items);
+  async componentDidMount() {
+    const currentStatus = await this.getCurrentStatus();
+    this.setState({ status: currentStatus });
+  }
+
+  handleChange = value => this.setState({ status: value });
+
+  handleSubmit = async () => {
+    const { status } = this.state;
+    await this.setStatus(status);
   };
 
   render() {
-    const { items } = this.state;
+    const { status, hasErrors } = this.state;
     return (
-      <div className="App">
-        <button onClick={this.post}>POST</button>
-        <button onClick={this.get}>GET</button>
-        <button onClick={this.list}>LIST</button>
-        <h1>List:</h1>
-        <ul>
-          {items.map(item => (
-            <li>item</li>
-          ))}
-        </ul>
-      </div>
+      <Grommet theme={theme}>
+        <Main pad="large">
+          <Heading>Streckenstatus</Heading>
+          <Form onSubmit={this.handleSubmit}>
+            <FormField
+              name="status"
+              component={RadioButtonGroup}
+              options={[
+                {
+                  value: Status.green,
+                  label: "Grün",
+                  id: "greenRadio"
+                },
+                {
+                  value: Status.yellow,
+                  label: "Gelb",
+                  id: "yellowRadio"
+                },
+                {
+                  value: Status.red,
+                  label: "Rot",
+                  id: "redRadio"
+                }
+              ]}
+              value={status}
+              onChange={event => this.handleChange(event.target.value)}
+            />
+            <Button
+              type="submit"
+              label="Status speichern"
+              icon={<Checkmark />}
+              primary={true}
+            />
+          </Form>
+          {hasErrors && (
+            <Paragraph margin="none" color="status-critical">
+              Es ist ein Fehler aufgetreten (sind Sie Admin?)
+            </Paragraph>
+          )}
+        </Main>
+      </Grommet>
     );
   }
 }
