@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <style>
+      svg {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 48px;
+        height: 48px;
+      }
+      .invisible {
+        visibility: hidden;
+      }
+      svg *[stroke*="#"],
+      svg *[STROKE*="#"] {
+        stroke: inherit;
+        fill: none;
+      }
+      #warningIcon {
+        fill: #ffaa15;
+        stroke: #ffaa15;
+      }
+      #goodIcon {
+        fill: #00c781;
+        stroke: #00c781;
+      }
+      #criticalIcon {
+        fill: #ff4040;
+        stroke: #ff4040;
+      }
+      #unknownIcon {
+        fill: #cccccc;
+        stroke: #cccccc;
+      }
+    </style>
+  </head>
+  <body>
+    <svg aria-label="StatusWarning" viewBox="0 0 24 24" id="warningIcon">
+      <path
+        class="invisible"
+        fill="none"
+        stroke="#000"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12,3 L22,21 L2,21 L12,3 Z M12,9 L12,15 M12,16 L12,18"
+      ></path>
+    </svg>
+    <svg aria-label="StatusGood" viewBox="0 0 24 24" id="goodIcon">
+      <path
+        class="invisible"
+        fill="none"
+        stroke="#000"
+        stroke-width="2"
+        d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M7,12 L11,15 L16,8"
+      ></path>
+    </svg>
+    <svg aria-label="StatusCritical" viewBox="0 0 24 24" id="criticalIcon">
+      <path
+        class="invisible"
+        fill="none"
+        stroke="#000"
+        stroke-width="2"
+        d="M12.7031806,2.70318058 C12.3148247,2.31482467 11.6897542,2.31024575 11.2968194,2.70318058 L2.70318058,11.2968194 C2.31482467,11.6851753 2.31024575,12.3102458 2.70318058,12.7031806 L11.2968194,21.2968194 C11.6851753,21.6851753 12.3102458,21.6897542 12.7031806,21.2968194 L21.2968194,12.7031806 C21.6851753,12.3148247 21.6897542,11.6897542 21.2968194,11.2968194 L12.7031806,2.70318058 Z M8.98264552,14.7001725 L14.7001725,8.98264552 M8.98264552,8.98264552 L14.7001725,14.7001725"
+      ></path>
+    </svg>
+    <svg aria-label="StatusUnknown" viewBox="0 0 24 24" id="unknownIcon">
+      <path
+        class="invisible"
+        fill="none"
+        stroke="#000"
+        stroke-width="2"
+        d="M2,3.99079514 C2,2.89130934 2.89821238,2 3.99079514,2 L20.0092049,2 C21.1086907,2 22,2.89821238 22,3.99079514 L22,20.0092049 C22,21.1086907 21.1017876,22 20.0092049,22 L3.99079514,22 C2.89130934,22 2,21.1017876 2,20.0092049 L2,3.99079514 Z M12,15 L12,14 C12,13 12,12.5 13,12 C14,11.5 15,11 15,9.5 C15,8.5 14,7 12,7 C10,7 9,8.26413718 9,10 M12,16 L12,18"
+      ></path>
+    </svg>
+    <script src="streckenstatus.js"></script>
+  </body>
+</html>
