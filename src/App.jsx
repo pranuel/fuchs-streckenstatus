@@ -25,10 +25,17 @@ Amplify.configure(awsconfig);
 
 class App extends React.Component {
   state = {
-    hasErrors: false
+    hasErrors: false,
+    isAdmin: false
   };
 
   async componentDidMount() {
+    const cognitoGroups = this.props.authData.signInUserSession.idToken.payload[
+      "cognito:groups"
+    ];
+    const isAdmin =
+      !!cognitoGroups && cognitoGroups.some(group => group === "Admins");
+    this.setState({ isAdmin });
     await this.refreshStatus();
   }
 
@@ -53,16 +60,20 @@ class App extends React.Component {
   }
 
   render() {
-    const { status, hasErrors } = this.state;
+    const { status, hasErrors, isAdmin } = this.state;
     return (
       <ErrorBoundary>
         <Grommet theme={theme} full>
           <Main flex pad="large" fill overflow={{ horizontal: "hidden" }}>
             <Heading>Streckenstatus</Heading>
-            <StatusForm status={status} onSubmit={this.handleSubmit} />
+            <StatusForm
+              isAdmin={isAdmin}
+              status={status}
+              onSubmit={this.handleSubmit}
+            />
             {hasErrors && (
               <Paragraph margin="none" color="status-critical">
-                Es ist ein Fehler aufgetreten (sind Sie Admin?)
+                Es ist ein Fehler aufgetreten...
               </Paragraph>
             )}
             <StatusDisplay status={status} />
