@@ -6,6 +6,7 @@ import { Grommet, Main, Heading, Paragraph } from "grommet";
 import { StatusForm } from "./StatusForm";
 import { ErrorBoundary } from "./ErrorBoundary";
 import { fetchCurrentStatus, saveStatus } from "./api";
+import { StatusDisplay } from "./StatusDisplay";
 
 const theme = {
   global: {
@@ -28,6 +29,20 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
+    await this.refreshStatus();
+  }
+
+  handleSubmit = async status => {
+    this.setState({ hasErrors: false });
+    try {
+      await saveStatus(status);
+      await this.refreshStatus();
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
+  };
+
+  async refreshStatus() {
     this.setState({ hasErrors: false });
     try {
       const status = await fetchCurrentStatus();
@@ -37,35 +52,20 @@ class App extends React.Component {
     }
   }
 
-  handleChange = value => this.setState({ status: value });
-
-  handleSubmit = async () => {
-    this.setState({ hasErrors: false });
-    try {
-      const { status } = this.state;
-      await saveStatus(status);
-    } catch (error) {
-      this.setState({ hasErrors: true });
-    }
-  };
-
   render() {
     const { status, hasErrors } = this.state;
     return (
       <ErrorBoundary>
         <Grommet theme={theme} full>
-          <Main pad="large">
+          <Main flex pad="large" fill overflow={{ horizontal: "hidden" }}>
             <Heading>Streckenstatus</Heading>
-            <StatusForm
-              status={status}
-              onChange={this.handleChange}
-              onSubmit={this.handleSubmit}
-            />
+            <StatusForm status={status} onSubmit={this.handleSubmit} />
             {hasErrors && (
               <Paragraph margin="none" color="status-critical">
                 Es ist ein Fehler aufgetreten (sind Sie Admin?)
               </Paragraph>
             )}
+            <StatusDisplay status={status} />
           </Main>
         </Grommet>
       </ErrorBoundary>

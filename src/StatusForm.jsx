@@ -1,17 +1,12 @@
 import React from "react";
 import { RadioButtonGroup, Form, FormField, Button } from "grommet";
 import { Checkmark } from "grommet-icons";
-
-const Status = {
-  green: "Green",
-  yellow: "Yellow",
-  red: "Red"
-};
+import { Status } from "./status.model";
 
 export function StatusForm(props) {
   const { status } = props;
   return (
-    <Form onSubmit={props.onSubmit}>
+    <Form onSubmit={({ value }) => props.onSubmit(value.status)}>
       <FormField
         name="status"
         component={RadioButtonGroup}
@@ -34,7 +29,6 @@ export function StatusForm(props) {
         ]}
         value={status}
         margin="medium"
-        onChange={event => props.onChange(event.target.value)}
       />
       <Button
         type="submit"
