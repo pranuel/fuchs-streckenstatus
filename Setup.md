@@ -1,7 +1,9 @@
 # Steps taken to setup this project
 * `amplify init`
+    * more info: https://aws-amplify.github.io/docs/cli-toolchain/quickstart#concepts-1
     * name: fuchs-streckenstatus
     * environment: dev
+        * use dev on development branch
     * AWS profile: default
 * `amplify add hosting`
     * select DEV
@@ -69,3 +71,10 @@
             * replace `4kst5mok57` in the url above with the actual id of your API
 * `amplify push`
 * `amplify publish`
+* `amplify env add`
+    * more info: https://aws-amplify.github.io/docs/cli-toolchain/quickstart#setting-up-master-and-dev-environments
+    * use prod on master branch
+    * ? Do you want to use an existing environment? No
+    * ? Enter a name for the environment prod
+    * ? Do you want to use an AWS profile? Yes
+    * ? Please choose the profile you want to use default

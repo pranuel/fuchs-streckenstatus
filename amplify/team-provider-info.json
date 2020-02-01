@@ -16,5 +16,29 @@
                 "fuchsstreckenstatus03aa004d": {}
             }
         }
+    },
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-fuchs-streckenstatus-prod-125406-authRole",
+            "UnauthRoleArn": "arn:aws:iam::561253620376:role/amplify-fuchs-streckenstatus-prod-125406-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::561253620376:role/amplify-fuchs-streckenstatus-prod-125406-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-fuchs-streckenstatus-prod-125406-deployment",
+            "UnauthRoleName": "amplify-fuchs-streckenstatus-prod-125406-unauthRole",
+            "StackName": "amplify-fuchs-streckenstatus-prod-125406",
+            "StackId": "arn:aws:cloudformation:eu-central-1:561253620376:stack/amplify-fuchs-streckenstatus-prod-125406/8d670870-44e9-11ea-bfdd-06a619e5de86",
+            "AmplifyAppId": "d1za7exfn4iv9i"
+        },
+        "categories": {
+            "auth": {
+                "fuchsstreckenstatus03aa004d": {},
+                "userPoolGroups": {}
+            },
+            "function": {
+                "fuchsstreckenstatusfunction": {},
+                "fuchsstreckenstatusreadonlyfunction": {},
+                "fuchsstreckenstatusdynamo": {}
+            }
+        }
     }
 }
