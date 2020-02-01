@@ -82,6 +82,8 @@
     - ? Max TTL for the default cache behavior 31536000
     - ? Min TTL for the default cache behavior 60
     - ? Configure Custom Error Responses No
+- `amplify push`
+- `amplify publish`
 - `amplify env add`
   - more info: https://aws-amplify.github.io/docs/cli-toolchain/quickstart#setting-up-master-and-dev-environments
   - use prod on master branch (if you need this, otherwise just use on environment and switch to PROD hosting)
