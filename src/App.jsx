@@ -1,5 +1,6 @@
 import React from "react";
-import { Grommet, Main, Heading, Paragraph, Button, Text } from "grommet";
+import { theme } from "./theme";
+import { Grommet, Main, Heading, Paragraph, Button, Text, Box } from "grommet";
 import { Logout } from "grommet-icons";
 import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
@@ -13,19 +14,6 @@ import { Auth } from "aws-amplify";
 import { AppBar } from "./AppBar";
 
 Amplify.configure(awsconfig);
-
-const theme = {
-  global: {
-    colors: {
-      brand: "#035951"
-    },
-    font: {
-      family: "Roboto",
-      size: "24px",
-      height: "26px"
-    }
-  }
-};
 
 const offlineReadyText = "Du kannst die App jetzt offline nutzen!";
 const newContentText = `Es gibt neuen Inhalt.
@@ -109,40 +97,42 @@ export class App extends React.Component {
     return (
       <ErrorBoundary>
         <Grommet theme={theme} full>
-          <AppBar>
-            <Text>Hi {this.userName}!</Text>
-            <Button
-              label="Ausloggen"
-              icon={<Logout />}
-              onClick={this.signOut}
-              justify="start"
-              alignSelf="end"
-            />
-          </AppBar>
-          <Main flex pad="large" fill overflow={{ horizontal: "hidden" }}>
-            <Heading>Streckenstatus</Heading>
-            <StatusForm
-              isAdmin={this.isAdmin}
-              status={status}
-              onSubmit={this.handleSubmit}
-            />
-            {!!error && (
-              <Paragraph margin="none" color="status-critical">
-                Es ist ein Fehler aufgetreten: "{error}"
-              </Paragraph>
-            )}
-            <StatusDisplay status={status} />
-            <PopupBanner
-              open={showOfflineReadyBanner}
-              text={offlineReadyText}
-              onClose={() => this.setState({ showOfflineReadyBanner: false })}
-            />
-            <PopupBanner
-              open={showNewContentBanner}
-              text={newContentText}
-              onClose={() => this.setState({ showNewContentBanner: false })}
-            />
-          </Main>
+          <Box fill overflow={{ horizontal: "hidden" }}>
+            <AppBar>
+              <Text>Hi {this.userName}!</Text>
+              <Button
+                label="Ausloggen"
+                icon={<Logout />}
+                onClick={this.signOut}
+                justify="start"
+                alignSelf="end"
+              />
+            </AppBar>
+            <Main flex pad="large">
+              <Heading>Streckenstatus</Heading>
+              <StatusForm
+                isAdmin={this.isAdmin}
+                status={status}
+                onSubmit={this.handleSubmit}
+              />
+              {!!error && (
+                <Paragraph margin="none" color="status-critical">
+                  Es ist ein Fehler aufgetreten: "{error}"
+                </Paragraph>
+              )}
+              <StatusDisplay status={status} />
+              <PopupBanner
+                open={showOfflineReadyBanner}
+                text={offlineReadyText}
+                onClose={() => this.setState({ showOfflineReadyBanner: false })}
+              />
+              <PopupBanner
+                open={showNewContentBanner}
+                text={newContentText}
+                onClose={() => this.setState({ showNewContentBanner: false })}
+              />
+            </Main>
+          </Box>
         </Grommet>
       </ErrorBoundary>
     );
