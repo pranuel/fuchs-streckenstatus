@@ -71,10 +71,22 @@
             * replace `4kst5mok57` in the url above with the actual id of your API
 * `amplify push`
 * `amplify publish`
+* `amplify hosting configure`
+    * more info: https://aws-amplify.github.io/docs/cli-toolchain/quickstart#stages
+    * switch from DEV stage to PROD:
+        * ? Specify the section to configure CloudFront
+        * ? Add CloudFront to hosting Yes
+        * ? default object to return from origin index.html
+        * ? Default TTL for the default cache behavior 86400
+        * ? Max TTL for the default cache behavior 31536000
+        * ? Min TTL for the default cache behavior 60
+        * ? Configure Custom Error Responses No
 * `amplify env add`
     * more info: https://aws-amplify.github.io/docs/cli-toolchain/quickstart#setting-up-master-and-dev-environments
-    * use prod on master branch
+    * use prod on master branch (if you need this, otherwise just use on environment and switch to PROD hosting)
     * ? Do you want to use an existing environment? No
     * ? Enter a name for the environment prod
     * ? Do you want to use an AWS profile? Yes
     * ? Please choose the profile you want to use default
+* `amplify env checkout dev`
+    * checks out a specific environment
