@@ -112,7 +112,6 @@ export class App extends React.Component {
               <Heading>Streckenstatus</Heading>
               <StatusForm
                 isAdmin={this.isAdmin}
-                status={status}
                 onSubmit={this.handleSubmit}
               />
               {!!error && (
